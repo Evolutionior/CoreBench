@@ -12,9 +12,12 @@ package ad_chn_iic_agent_package;
     `include "ad_chn_iic_driver.sv";
     //`include "ad_chn_iic_interface.sv";
     `include "ad_chn_iic_monitor.sv";
-    `include "ad_chn_iic_sequencer.sv";
+    //`include "ad_chn_iic_sequencer.sv";
 
 endpackage
+
+    import ad_chn_iic_agent_package::*;
+
 `endif
 
  

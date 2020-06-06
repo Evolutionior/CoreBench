@@ -19,17 +19,17 @@ class ad_chn_iic_agent extends uvm_agent;
         super.new(name,parent);
     endfunction
 
-    extern virtual function void bulid_phase(uvm_phase phase);
+    extern virtual function void build_phase(uvm_phase phase);
     extern virtual function void connect_phase(uvm_phase phase);
 
     `uvm_component_utils(ad_chn_iic_agent);
 
 endclass
 
-function void ad_chn_iic_agent::bulid_phase(uvm_phase phase);
+function void ad_chn_iic_agent::build_phase(uvm_phase phase);
     super.build_phase(phase);
     cfg = new("cfg"); 
-    if(cfg.randomize())
+    if(!cfg.randomize())
 	`uvm_error("ERROR","cfg.randomize() failed")
     cfg.print();
     if(this.cfg.mon_sw == stb_dec::ON) begin
@@ -39,11 +39,16 @@ function void ad_chn_iic_agent::bulid_phase(uvm_phase phase);
         this.drv =  ad_chn_iic_driver::type_id::create("drv",this);
         this.sqr =  ad_chn_iic_sequencer::type_id::create("sqr",this);
     end
-    if (this.cfg.drv_sw == stb_dec::ON) begin
-        this.drv.seq_item_port.connect(sqr.seq_item_export);
-    end
+
 endfunction
 function void ad_chn_iic_agent::connect_phase(uvm_phase phase);
+
+    `uvm_info(get_type_name(),"connect_phase is runing",UVM_HIGH)
+    if (this.cfg.drv_sw == stb_dec::ON) begin
+	`uvm_info(get_type_name(),"this.drv.seq_item_port.connect(sqr.seq_item_export)",UVM_HIGH)
+        this.drv.seq_item_port.connect(this.sqr.seq_item_export);
+    end
+
     super.connect_phase(phase);
 
 endfunction

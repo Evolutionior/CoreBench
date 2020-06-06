@@ -24,7 +24,7 @@ class `tc_name extends tc_base;
 
     task main_phase (uvm_phase phase);
         i2c_default_sequence seq;
-	seq.set_sequencer(this.env.ad_chn_iic_agt.sqr);
+	//seq.set_sequencer(this.env.ad_chn_iic_agt.sqr);
 	phase.raise_objection(this);
 	seq = i2c_default_sequence::type_id::create("seq");
 	seq.start(this.env.ad_chn_iic_agt.sqr);

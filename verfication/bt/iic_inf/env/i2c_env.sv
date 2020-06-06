@@ -16,7 +16,6 @@ class i2c_env extends uvm_env;
     `uvm_component_utils(i2c_env)
     
     ad_chn_iic_agent ad_chn_iic_agt; 
-    //ad_wishbone_agent ad_wishbone_agt; 
 
     function new(string name = "env",uvm_component parent);
         super.new(name,parent);

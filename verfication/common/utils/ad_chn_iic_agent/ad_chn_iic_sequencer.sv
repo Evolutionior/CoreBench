@@ -6,7 +6,6 @@ import uvm_pkg::*;
 
 class ad_chn_iic_sequencer extends uvm_sequencer #(ad_chn_iic_transaction);
 
-    `uvm_component_param_utils(ad_chn_iic_sequencer);
     
     function new(string name = "ad_chn_iic_sequencer", uvm_component parent);
       super.new(name, parent);
@@ -18,6 +17,11 @@ class ad_chn_iic_sequencer extends uvm_sequencer #(ad_chn_iic_transaction);
 //	seq.start(this);
 //	phase.drop_objection(this);
 //    endtask
+    virtual function void build_phase(uvm_phase phase);
+      super.build_phase(phase);
+    endfunction
+
+    `uvm_component_param_utils(ad_chn_iic_sequencer);
 endclass
 
 `endif
