@@ -30,11 +30,6 @@ class `tc_name extends tc_base;
 	seq.start(this.env.ad_chn_iic_agt.sqr);
         `uvm_info(get_type_name(),"test case is runing !!!",UVM_HIGH);
 
-	if(harness.U_DUT.scl_pad_i == 0)
-	    `uvm_info(get_type_name(),"harness.U_DUT.scl_pad_i == 0",UVM_HIGH)
-	else
-	    `uvm_info(get_type_name(),"harness.U_DUT.scl_pad_i == 1",UVM_HIGH)
-
 	#1ms; 
 	phase.drop_objection(this);
     endtask
