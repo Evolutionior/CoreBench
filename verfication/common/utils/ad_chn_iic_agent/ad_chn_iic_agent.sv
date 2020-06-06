@@ -33,14 +33,14 @@ function void ad_chn_iic_agent::bulid_phase(uvm_phase phase);
 	`uvm_error("ERROR","cfg.randomize() failed")
     cfg.print();
     if(this.cfg.mon_sw == stb_dec::ON) begin
-        mon =  ad_chn_iic_monitor::type_id::create("mon",this);
+        this.mon =  ad_chn_iic_monitor::type_id::create("mon",this);
     end
     if(this.cfg.drv_sw == stb_dec::ON) begin
-        drv =  ad_chn_iic_driver::type_id::create("drv",this);
-        sqr =  ad_chn_iic_sequencer::type_id::create("sqr",this);
+        this.drv =  ad_chn_iic_driver::type_id::create("drv",this);
+        this.sqr =  ad_chn_iic_sequencer::type_id::create("sqr",this);
     end
     if (this.cfg.drv_sw == stb_dec::ON) begin
-        drv.seq_item_port.connect(sqr.seq_item_export);
+        this.drv.seq_item_port.connect(sqr.seq_item_export);
     end
 endfunction
 function void ad_chn_iic_agent::connect_phase(uvm_phase phase);
