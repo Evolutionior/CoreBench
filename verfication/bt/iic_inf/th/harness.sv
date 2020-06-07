@@ -9,12 +9,12 @@ module harness;
 
     import uvm_pkg::*;
     
-    logic rst_n;
-
+    logic clk_chn_iic_inf;
     include ../th/signal_connect.sv;
-    `stb_clk_gen(clk,100,0.5,0,3)
-    `stb_rst_gen(rst_n,10,1000)
-    ad_chn_iic_interface ad_chn_iic_inf(clk,rst_n);
+    `stb_clk_gen(clk,20.83,0.5,0,2)
+    `stb_clk_gen(clk_chn_iic_inf,5000,0.5,0,2)
+    `stb_rst_gen(rst_n,1000,5000)
+    ad_chn_iic_interface ad_chn_iic_inf(clk_chn_iic_inf,rst_n);
 
     assign rst = !rst_n;
     
@@ -30,7 +30,7 @@ module harness;
 
     initial 
     begin
-        $fsdbDumpfile("test.fsdb");
+        $fsdbDumpfile("./work/CoreBench.fsdb");
         $fsdbDumpvars(0,harness);
     end
     initial begin

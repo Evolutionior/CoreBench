@@ -7,6 +7,7 @@ wire 		    sda;
 logic		    scl;   
 logic [7:0]	    myReg0;   
 
+logic		    rst_n;
 initial 
 begin
 

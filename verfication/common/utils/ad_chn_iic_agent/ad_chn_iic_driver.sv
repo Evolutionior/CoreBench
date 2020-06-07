@@ -52,7 +52,7 @@ task ad_chn_iic_driver::drive_one_pkt(ad_chn_iic_transaction tr);
     @(posedge vif.clk);
     vif.iic_scl <= 1'b1;
     vif.iic_sda <= 1'b0;
-    @(negedge vif.clk);
+    @(posedge vif.clk);
     vif.iic_scl <= 1'b0;
     vif.iic_sda <= 1'b0;
     //send packet bits
@@ -60,16 +60,16 @@ task ad_chn_iic_driver::drive_one_pkt(ad_chn_iic_transaction tr);
     `uvm_info(get_type_name(),$sformatf("data_size = %d",data_size),UVM_HIGH)
     for(int i = 0 ;i < data_size ;i++) begin
         @(posedge vif.clk);
-        vif.iic_scl <= 1'b1;
         vif.iic_sda <= data_q[i];
-        @(negedge vif.clk);
         vif.iic_scl <= 1'b0;
+        @(posedge vif.clk);
+        vif.iic_scl <= 1'b1;
         if(i%8 == 7) begin
             @(posedge vif.clk);
-            vif.iic_scl <= 1'b1;
+            vif.iic_scl <= 1'b0;
             vif.iic_sda <= 1'bz;
             @(negedge vif.clk);
-            vif.iic_scl <= 1'b0;
+            vif.iic_scl <= 1'b1;
             if(vif.iic_sda != 0) begin
 	            `uvm_warning(get_type_name(),$sformatf("when i = %d, vif.iic_sda != 0",i));
                 break;
