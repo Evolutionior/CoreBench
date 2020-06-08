@@ -68,7 +68,7 @@ task ad_chn_iic_driver::drive_one_pkt(ad_chn_iic_transaction tr);
             @(posedge vif.clk);
             vif.iic_scl <= 1'b0;
             vif.iic_sda <= 1'bz;
-            @(negedge vif.clk);
+            @(posedge vif.clk);
             vif.iic_scl <= 1'b1;
             if(vif.iic_sda != 0) begin
 	            `uvm_warning(get_type_name(),$sformatf("when i = %d, vif.iic_sda != 0",i));

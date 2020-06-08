@@ -342,7 +342,7 @@ begin
     writeEn <= 1'b0;
     dataOut <= 8'h00;
     clearStartStopDet <= 1'b0;
-    // regAddr <=     // Initialization in the reset state or default value required!!
+    regAddr <= 8'h00;    // Initialization in the reset state or default value required!!
     streamSt <= `STREAM_IDLE;
     txData <= 8'h00;
     rxData <= 8'h00;
