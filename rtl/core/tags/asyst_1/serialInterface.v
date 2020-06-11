@@ -297,7 +297,6 @@ begin
       if (scl == 1'b0)
       begin
         NextState_SISt <= `CHK_RD_WR;
-        next_sdaOut <= 1'b1;
       end
     end
     `WRITE_WT_HI2:
@@ -306,6 +305,7 @@ begin
       if (scl == 1'b1)
       begin
         NextState_SISt <= `WRITE_WT_LO2;
+        next_sdaOut <= 1'b1;
       end
     end
     `WRITE_CLR_WR:

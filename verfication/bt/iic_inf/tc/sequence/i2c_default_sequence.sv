@@ -20,7 +20,8 @@ class i2c_default_sequence extends uvm_sequence #(ad_chn_iic_transaction);
 	#1ms;
 	`uvm_info("i2c_default_sequence","i2c_default_sequence runing !!!",UVM_HIGH);
         repeat(2) begin
-            `uvm_do_with(tr,{tr.i2c_rw_bit == 1'b0;})
+            `uvm_do_with(tr,{tr.i2c_rw_bit == 1'b0; 
+			     tr.i2c_data_len == 2;})
             #($urandom_range(1000,10000));
 	    #100us;
         end
